@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
-// import mybagRoutes from './routes/mybag.js'
+import mybagRoutes from './routes/mybag.js'
 
 const app = express();
 
@@ -12,7 +12,7 @@ const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
 
-// app.use('/mybag', mybagRoutes);
+app.use('/mybag', mybagRoutes);
 
 const CONECTION_URL = "mongodb+srv://scrapmybag:scrapmybag123123@cluster0.xinpo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const PORT = process.env.PORT || 5000;
