@@ -2,7 +2,8 @@ import Bag from "../models/bags.js";
 import { addBagsToDB } from "./scrape.js";
 
 async function initDB() {
-  if ((await Bag.find()).length === 0) {
+  if ((await Bag.find()).length != 0) {
+    Bag.remove();
     const bags = await addBagsToDB();
 
     bags[0].forEach((element) => {
@@ -17,7 +18,7 @@ async function initDB() {
         },
         (err) => {
           if (err) {
-            console.log();
+            console.log(err);
           }
         }
       );
@@ -25,9 +26,12 @@ async function initDB() {
   }
 }
 
+
+initDB();
+
 export const getBags = async (req, res) => {
   try {
-    //await initDB();
+    
     const bags = await Bag.find();
     res.status(200).json(bags);
   } catch (error) {
